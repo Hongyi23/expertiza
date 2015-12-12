@@ -13,6 +13,13 @@ FactoryGirl.define do
     cache nil 
   end
 
+  factory :role1, class: Role do
+    name "Instructor"
+    parent_id 6
+    description ""
+    default_page_id nil
+  end
+
   factory :student, class: User do
     name
     crypted_password "e83023eae8ec13ce0ed71efce1a3c4bbe23fc21c" 
@@ -29,12 +36,37 @@ FactoryGirl.define do
     is_new_user false
     master_permission_granted 0 
     handle "handle"
-    leaderboard_privacy false 
+    leaderboard_privacy false
     digital_certificate  nil 
     persistence_token  "31a60e1c3ae74ed6000750006e3347e8a7e092ff1dd38d0036..." 
     timezonepref nil
     public_key nil
     copy_of_emails  false
+  end
+
+  factory :instructor, class: User do
+    name "instructor6"
+    crypted_password "74ce9dc9c13ef56ec511fd6755f0c7a60736b208"
+    role_id 2
+    password_salt "e0RE8n3Mj4oJLVn988S2"
+    fullname "6, instructor"
+    email "expertiza@mailinator.com"
+    parent_id 2
+    private_by_default false
+    mru_directory_path nil
+    email_on_review true
+    email_on_submission true
+    email_on_review_of_review true
+    is_new_user false
+    master_permission_granted 0
+    handle "handle"
+    leaderboard_privacy false
+    digital_certificate nil
+    persistence_token "d84c85abc77a50a99d106f642feb3a194f4d6327436c318d0f..."
+    timezonepref "Eastern Time (US & Canada)"
+    public_key nil
+    copy_of_emails false
+    #institutions_id nil
   end
 
   factory :course ,class:Course do

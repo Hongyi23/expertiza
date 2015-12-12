@@ -4,14 +4,35 @@ require 'selenium-webdriver'
 
 describe "E1582. Create integration tests for the instructor interface using capybara and rspec" do
 
+  let(:topics){FactoryGirl.create(:topics)}
+  before(:each) do
+    FactoryGirl.create(:instructor)
+    FactoryGirl.create(:assignment)
+    FactoryGirl.create(:due_date)
+    FactoryGirl.create(:participants)
+    FactoryGirl.create(:participants)
+    FactoryGirl.create(:participants)
+    FactoryGirl.create(:topics)
+    FactoryGirl.create(:assignmentnode)
+    FactoryGirl.create(:topics,topic_name:"command pattern")
+    FactoryGirl.create(:deadline_type,name:"submission")
+    FactoryGirl.create(:deadline_type,name:"review")
+    FactoryGirl.create(:deadline_type,name:"resubmission")
+    FactoryGirl.create(:deadline_type,name:"rereview")
+    FactoryGirl.create(:deadline_type,name:"metareview")
+    FactoryGirl.create(:deadline_type,name:"drop_topic")
+    FactoryGirl.create(:deadline_type,name:"signup")	
+    FactoryGirl.create(:deadline_type,name:"team_formation")
+  end
+
   feature "Test1: Instructor login" do
     scenario "with valid username and password" do
-      login_with 'admin', 'admin'
+      login_with 'instructor6', 'password'
       expect(page).to have_content("Manage content")
     end
 
     scenario "with invalid username and password" do
-      login_with 'admin', 'drowssap'
+      login_with 'instructor6', 'drowssap'
       expect(page).to have_content('Incorrect Name/Password')
     end
   end
