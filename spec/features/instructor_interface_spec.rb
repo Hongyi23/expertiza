@@ -33,7 +33,7 @@ describe "E1582. Create integration tests for the instructor interface using cap
       ApplicationController.any_instance.stub(:current_user).and_return(instructor)
       ApplicationController.any_instance.stub(:current_role_name).and_return('Instructor')
       ApplicationController.any_instance.stub(:current_role).and_return(role)
-      ApplicationController.any_instance.stub(:super_admin?).and_return(false)
+      #ApplicationController.any_instance.stub(:super_admin?).and_return(false)
       
       visit "/tree_display/list"
       expect(page).to have_content("Manage content")

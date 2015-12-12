@@ -48,7 +48,7 @@ FactoryGirl.define do
   factory :instructor, class: User do
     name "instructor6"
     crypted_password "74ce9dc9c13ef56ec511fd6755f0c7a60736b208"
-    role_id 2
+    role { Role.second || association(:role)}
     password_salt "e0RE8n3Mj4oJLVn988S2"
     fullname "6, instructor"
     email "expertiza@mailinator.com"
