@@ -34,20 +34,20 @@ describe "E1582. Create integration tests for the instructor interface using cap
       ApplicationController.any_instance.stub(:current_role_name).and_return('Instructor')
       ApplicationController.any_instance.stub(:current_role).and_return(role)
       #ApplicationController.any_instance.stub(:super_admin?).and_return(false)
-      
+      #session_for(instructor)
       visit "/tree_display/list"
       expect(page).to have_content("Manage content")
     end
 
     scenario "with invalid username and password" do
-      login_with 'instructor6', 'drowssap'
+      login_with 'instructor6', 'password'
       expect(page).to have_content('Incorrect Name/Password')
     end
   end
 
   feature "Test2: Create a course" do
     scenario "should be able to create a public course or a private course" do
-      login_with 'admin', 'admin'
+      login_with 'instructor6', 'password'
 
       visit '/course/new?private=0'
       fill_in "Course Name", with: 'public course for test'
@@ -201,4 +201,11 @@ describe "E1582. Create integration tests for the instructor interface using cap
     fill_in 'login_password', with: password
     click_button 'SIGN IN'
   end
+  def session_for(user)
+        user = User.find user.id
+        session = {:user => user}
+        Role.rebuild_cache
+        AuthController.set_current_role user.role.id, session
+        session
+      end
 end

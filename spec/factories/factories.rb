@@ -6,8 +6,10 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
+  Role.rebuild_cache
   factory :role ,class: Role do
     name "Student"
+    #id 1
     parent_id  1 
     description  "" 
     cache nil 
@@ -15,10 +17,10 @@ FactoryGirl.define do
 
   factory :role1, class: Role do
     name "Instructor"
-    parent_id 6
+    parent_id 2
     description ""
     default_page_id nil
-    cache nil
+    #id 2
   end
 
   factory :student, class: User do
@@ -48,7 +50,7 @@ FactoryGirl.define do
   factory :instructor, class: User do
     name "instructor6"
     crypted_password "74ce9dc9c13ef56ec511fd6755f0c7a60736b208"
-    role { Role.second || association(:role)}
+    role { Role.first || association(:role1)}
     password_salt "e0RE8n3Mj4oJLVn988S2"
     fullname "6, instructor"
     email "expertiza@mailinator.com"
