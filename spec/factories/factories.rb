@@ -18,6 +18,7 @@ FactoryGirl.define do
     parent_id 6
     description ""
     default_page_id nil
+    cache nil
   end
 
   factory :student, class: User do
@@ -132,26 +133,26 @@ FactoryGirl.define do
     topic_identifier "1"
     micropayment 0 
     private_to nil
-  end  
-      
+  end
+
   factory :participants ,class:Participant do
     can_submit true
     can_review true
-    assignment { Assignment.first || association(:assignment)}  
-    association :user, :factory => :student,strategy: :build   
+    assignment { Assignment.first || association(:assignment)}
+    association :user, :factory => :student,strategy: :build
     directory_num nil
     submitted_at nil
     permission_granted nil
     penalty_accumulated 0
     submitted_hyperlinks "--- \n- http://pg-server.csc.ncsu.edu/mediawiki/ind..."
-    grade nil 
-    type "AssignmentParticipant" 
+    grade nil
+    type "AssignmentParticipant"
     handle "handle"
     time_stamp nil
     digital_signature nil
-    duty nil 
+    duty nil
     can_take_quiz true
-  end 
+  end
 
   factory :wiki_type ,class:WikiType do
     name "MediaWiki" 
